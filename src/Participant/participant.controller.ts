@@ -1,4 +1,4 @@
-import { Controller, Post, Body, UseGuards } from '@nestjs/common';
+import { Controller, Post, Body, UseGuards, Get } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { ParticipantsService } from './participant.service';
 import { CreateParticipantDto } from './dto/create-participant.dto';
@@ -24,5 +24,10 @@ export class ParticipantsController {
     @Body() createParticipantDto: CreateParticipantDto,
   ): Promise<Participant> {
     return this.participantsService.createParticipant(createParticipantDto);
+  }
+
+  @Get('AllParticipants')
+  async getAllParticipants(): Promise<Participant[]> {
+    return this.participantsService.getAllParticipants();
   }
 }

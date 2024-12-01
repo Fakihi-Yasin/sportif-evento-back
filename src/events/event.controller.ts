@@ -37,16 +37,10 @@ export class EventController {
     return await this.eventService.createEvent(createEventDto, organizerId);
   }
 
-  //   @Get()
-  //   async getMyEvents(@Req() req: Request) {
-  //     const organizerId = req.user['id'];
-  //     return this.eventService.getEventsByOrganizer(organizerId);
-  //   }
-
-  @Get()
-  async getAllEvents() {
-    return this.eventService.getAllEvents();
-  }
+  // @Get()
+  // async getAllEvents() {
+  //   return this.eventService.getAllEvents();
+  // }
 
   @Patch(':id')
   async updateEvent(
@@ -59,6 +53,9 @@ export class EventController {
     }
     return updatedEvent;
   }
+
+
+  
 
   @Get('my-events')
   @UseGuards(AuthGuard) // Assuming you have authentication in place

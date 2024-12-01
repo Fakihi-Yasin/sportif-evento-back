@@ -30,25 +30,25 @@ export class EventService {
     }
   }
 
-  async getAllEvents(): Promise<Event[]> {
-    try {
-      return await this.eventModel.find().exec();
-    } catch (error) {
-      throw new NotFoundException('Unable to retrieve events');
-    }
-  }
+  // async getAllEvents(): Promise<Event[]> {
+  //   try {
+  //     return await this.eventModel.find().exec();
+  //   } catch (error) {
+  //     throw new NotFoundException('Unable to retrieve events');
+  //   }
+  // }
 
-  async getEventDetails(eventId: string): Promise<Event> {
-    try {
-      const event = await this.eventModel.findById(eventId).exec();
-      if (!event) {
-        throw new NotFoundException('Event not found');
-      }
-      return event;
-    } catch (error) {
-      throw new NotFoundException('event not found');
-    }
-  }
+  // async getEventDetails(eventId: string): Promise<Event> {
+  //   try {
+  //     const event = await this.eventModel.findById(eventId).exec();
+  //     if (!event) {
+  //       throw new NotFoundException('Event not found');
+  //     }
+  //     return event;
+  //   } catch (error) {
+  //     throw new NotFoundException('event not found');
+  //   }
+  // }
   async geteventsByorgnizer(organizerId: string): Promise<Event[]> {
     try {
       return await this.eventModel

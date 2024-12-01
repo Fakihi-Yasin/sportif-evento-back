@@ -24,6 +24,9 @@ export class Participant {
     example: 'John Doe',
     required: true,
   })
+
+  // @Prop({ required: true })
+  // eventName: string;
   @Prop({ required: true, trim: true })
   username: string;
 

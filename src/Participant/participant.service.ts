@@ -24,12 +24,16 @@ export class ParticipantsService {
     }
 
     const participant = new this.participantModel({
-      event: createParticipantDto.eventId, // This should be a valid MongoDB ObjectId
+      event: createParticipantDto.eventId,
       username: createParticipantDto.username,
       email: createParticipantDto.email,
       phoneNumber: createParticipantDto.phoneNumber,
     });
 
     return participant.save();
+  }
+
+  async getAllParticipants(): Promise<Participant[]> {
+    return this.participantModel.find().populate('event', 'name').exec();
   }
 }

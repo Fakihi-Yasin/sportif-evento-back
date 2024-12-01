@@ -12,7 +12,6 @@ import { CreateUserDto } from './dto/create-user.dto';
 export class UsersService {
   constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
 
-  // Existing createUser method (if needed)
   async createUser(createUserDto: CreateUserDto): Promise<Partial<User>> {
     const { name, lastname, email, password } = createUserDto;
 
@@ -43,7 +42,6 @@ export class UsersService {
     }
   }
 
-  // New method for creating user with pre-hashed password
   async createUserWithHashedPassword(userData: {
     name: string;
     lastname: string;
