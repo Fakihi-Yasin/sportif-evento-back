@@ -35,5 +35,5 @@ export class UpdateEventDto {
   @IsOptional()
   @IsString()
   @IsNotEmpty()
-  organizerId?: string; // Ensure organizerId can also be updated, if required.
+  organizerId?: string;
 }

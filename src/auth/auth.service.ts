@@ -17,7 +17,6 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) {}
 
-  // Custom password hashing method
   private hashPassword(password: string): string {
     const secret = process.env.PASSWORD_SECRET || 'default-secret';
     return crypto.createHmac('sha256', secret).update(password).digest('hex');
@@ -26,16 +25,13 @@ export class AuthService {
   async register(registerDto: RegisterDto) {
     const { name, lastname, email, password } = registerDto;
 
-    // Check if user already exists
     const existingUser = await this.usersService.findByEmail(email);
     if (existingUser) {
       throw new ConflictException('User with this email already exists');
     }
 
-    // Hash the password
     const hashedPassword = this.hashPassword(password);
 
-    // Create the user
     try {
       const newUser = await this.usersService.createUserWithHashedPassword({
         name,

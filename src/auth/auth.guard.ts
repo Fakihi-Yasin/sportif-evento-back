@@ -7,7 +7,7 @@ import {
 import { JwtService } from '@nestjs/jwt';
 import { UsersService } from 'src/users/users.service'; // Import your user service
 
-@Injectable()
+@Injectable()  // function li katppassi lina wahd meta data lclass
 export class AuthGuard implements CanActivate {
   constructor(
     private jwtService: JwtService,

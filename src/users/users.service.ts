@@ -12,16 +12,44 @@ import { CreateUserDto } from './dto/create-user.dto';
 export class UsersService {
   constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
 
+  // async createUser(createUserDto: CreateUserDto): Promise<Partial<User>> {
+  //   const { name, lastname, email, password } = createUserDto;
+
+  //   // Check if user already exists
+  //   const existingUser = await this.userModel.findOne({ email });
+  //   if (existingUser) {
+  //     throw new ConflictException('User with this email already exists');
+  //   }
+
+  //   // Create new user
+  //   try {
+  //     const newUser = new this.userModel({
+  //       name,
+  //       lastname,
+  //       email,
+  //       password,
+  //     });
+
+  //     // Save user and exclude password from return
+  //     const savedUser = await newUser.save();
+
+  //     // Explicitly remove password using object destructuring
+  //     const { password: _, ...userWithoutPassword } = savedUser.toObject();
+
+  //     return userWithoutPassword;
+  //   } catch (error) {
+  //     throw new InternalServerErrorException('Failed to create user');
+  //   }
+  // }
+
   async createUser(createUserDto: CreateUserDto): Promise<Partial<User>> {
     const { name, lastname, email, password } = createUserDto;
-
-    // Check if user already exists
+  
     const existingUser = await this.userModel.findOne({ email });
     if (existingUser) {
       throw new ConflictException('User with this email already exists');
     }
-
-    // Create new user
+  
     try {
       const newUser = new this.userModel({
         name,
@@ -29,13 +57,9 @@ export class UsersService {
         email,
         password,
       });
-
-      // Save user and exclude password from return
+  
       const savedUser = await newUser.save();
-
-      // Explicitly remove password using object destructuring
       const { password: _, ...userWithoutPassword } = savedUser.toObject();
-
       return userWithoutPassword;
     } catch (error) {
       throw new InternalServerErrorException('Failed to create user');

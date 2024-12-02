@@ -28,19 +28,15 @@ export class EventController {
   constructor(private readonly eventService: EventService) {}
 
   @Post()
-  @UseGuards(AuthGuard) // Assuming you have an AuthGuard for authentication
+  @UseGuards(AuthGuard)
   async createEvent(
     @Body() createEventDto: CreateEventDto,
-    @Req() req: any, // Use this to access the authenticated user's details
+    @Req() req: any,
   ): Promise<Event> {
     const organizerId = req.user.id; // Extract organizer ID from the authenticated user
     return await this.eventService.createEvent(createEventDto, organizerId);
   }
 
-  // @Get()
-  // async getAllEvents() {
-  //   return this.eventService.getAllEvents();
-  // }
 
   @Patch(':id')
   async updateEvent(
@@ -55,9 +51,9 @@ export class EventController {
   }
 
   @Get('my-events')
-  @UseGuards(AuthGuard) // Assuming you have authentication in place
+  @UseGuards(AuthGuard)
   async getMyEvents(@Request() req): Promise<Event[]> {
-    const organizerId = req.user.id; // Assuming the authenticated user ID is available in req.user.id
+    const organizerId = req.user.id;
     return this.eventService.geteventsByorgnizer(organizerId);
   }
 

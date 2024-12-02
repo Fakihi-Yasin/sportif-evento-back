@@ -23,7 +23,7 @@ export class Event extends Document {
   //   participants: string[];
 
   @Prop({ required: true })
-  organizerId: string; // ID de l'organisateur qui a créé l'événement
+  organizerId: string;
 }
 
 export const EventSchema = SchemaFactory.createForClass(Event);
