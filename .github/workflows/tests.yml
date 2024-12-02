@@ -10,17 +10,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Check out the repository
       - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Set up Node.js
-        # uses: actions/setup-node@v3working-directory: ./sporti-evento-back
-        # or
-        # working-directory: server
-        
+        uses: actions/setup-node@v3    # Added the missing 'uses' key
         with:
-            node-version: 20.17.0
+          node-version: 20.17.0
 
       - name: Install dependencies
         run: npm install
