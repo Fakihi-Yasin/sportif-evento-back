@@ -16,7 +16,6 @@ export class ParticipantsService {
   async createParticipant(
     createParticipantDto: CreateParticipantDto,
   ): Promise<Participant> {
-    // Validate that the event exists first
     const event = await this.eventModel.findById(createParticipantDto.eventId);
 
     if (!event) {
@@ -32,6 +31,8 @@ export class ParticipantsService {
 
     return participant.save();
   }
+
+  
 
   async getAllParticipants(): Promise<Participant[]> {
     return this.participantModel.find().populate('event', 'name').exec();
