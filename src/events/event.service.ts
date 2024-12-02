@@ -17,15 +17,21 @@ export class EventService {
     organizerId: string,
   ): Promise<Event> {
     try {
+      // Use the model's constructor directly
       const newEvent = new this.eventModel({
         ...createEventDto,
         organizerId,
-        capacity: createEventDto.capacity || 0,
+        // Explicitly set capacity to 0 if not provided
+        capacity: createEventDto.capacity ?? 0,
       });
 
+      // Save the event and return the result
       return await newEvent.save();
     } catch (error) {
-      console.error("Erreur lors de la création de l'événement:", error);
+      // Log the specific error for debugging
+      console.error('Error creating event:', error);
+
+      // Throw a BadRequestException with a specific message
       throw new BadRequestException("Impossible de créer l'événement");
     }
   }

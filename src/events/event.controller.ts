@@ -54,9 +54,6 @@ export class EventController {
     return updatedEvent;
   }
 
-
-  
-
   @Get('my-events')
   @UseGuards(AuthGuard) // Assuming you have authentication in place
   async getMyEvents(@Request() req): Promise<Event[]> {
