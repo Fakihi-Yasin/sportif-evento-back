@@ -1,4 +1,4 @@
-import { IsDate, IsNumber, IsOptional, IsString, Min } from 'class-validator';
+import { IsDate, IsNumber, IsOptional, IsString, Min, MinDate } from 'class-validator';
 import { Type } from 'class-transformer';
 
 export class CreateEventDto {
@@ -9,6 +9,8 @@ export class CreateEventDto {
   description: string;
 
   @IsDate()
+  @Type(() => Date)
+  @MinDate(new Date())
   @Type(() => Date)
   date: Date;
 

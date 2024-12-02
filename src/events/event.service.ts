@@ -17,7 +17,12 @@ export class EventService {
     organizerId: string,
   ): Promise<Event> {
     try {
-      // Use the model's constructor directly
+      const eventdate = new Date(createEventDto.date);
+      const currentdate = new Date();
+
+      if(eventdate < currentdate){
+        throw new BadRequestException('invalide date');
+      }
       const newEvent = new this.eventModel({
         ...createEventDto,
         organizerId,

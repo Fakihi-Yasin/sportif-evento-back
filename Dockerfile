@@ -1,13 +1,8 @@
-FROM node:20.17.0
-
-WORKDIR /usr/src/app
-
+FROM node:20
+WORKDIR /app-sporto-backend
 COPY package*.json ./
-
 RUN npm install
-
 COPY . .
-
-EXPOSE 5173
-
-CMD [ "npm", "run", "dev" ]
+RUN npm run build
+EXPOSE 3001
+CMD ["npm", "run", "start:dev"]
